@@ -17,35 +17,51 @@ class DigitValidationBenchmark : SimpleBenchmark() {
 
     fun timeRegexValidateDigits(reps: Int) {
         for (i in 0..<reps) {
-            Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.regexValidateDigits(VALID_INPUT))
-            Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.regexValidateDigits(INVALID_INPUT))
+            VALID_INPUTS.forEach {
+                Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.regexValidateDigits(it))
+            }
+            INVALID_INPUTS.forEach {
+                Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.regexValidateDigits(it))
+            }
         }
     }
 
     fun timeCommonValidateDigits(reps: Int) {
         for (i in 0..<reps) {
-            Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.commonValidateDigits(VALID_INPUT))
-            Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.commonValidateDigits(INVALID_INPUT))
+            VALID_INPUTS.forEach {
+                Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.commonValidateDigits(it))
+            }
+            INVALID_INPUTS.forEach {
+                Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.commonValidateDigits(it))
+            }
         }
     }
 
     @Test
     @Throws(Exception::class)
     fun testRegexValidateDigits() {
-        Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.regexValidateDigits(VALID_INPUT))
-        Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.regexValidateDigits(INVALID_INPUT))
+        VALID_INPUTS.forEach {
+            Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.regexValidateDigits(it))
+        }
+        INVALID_INPUTS.forEach {
+            Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.regexValidateDigits(it))
+        }
     }
 
     @Test
     @Throws(Exception::class)
     fun testCommonValidateDigits() {
-        Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.commonValidateDigits(VALID_INPUT))
-        Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.commonValidateDigits(INVALID_INPUT))
+        VALID_INPUTS.forEach {
+            Assertions.assertEquals(TRUE_EXPECTED, DigitValidatorUtil.commonValidateDigits(it))
+        }
+        INVALID_INPUTS.forEach {
+            Assertions.assertEquals(FALSE_EXPECTED, DigitValidatorUtil.commonValidateDigits(it))
+        }
     }
 
     companion object {
-        private val VALID_INPUT = "074567"
-        private val INVALID_INPUT = "084567"
+        private val VALID_INPUTS = listOf("074567","021111", "021342","012342")
+        private val INVALID_INPUTS = listOf("08456781029481204981209432109831", null, "","    ", "110000","0799910","089342")
         private const val TRUE_EXPECTED = true
         private const val FALSE_EXPECTED = false
     }
